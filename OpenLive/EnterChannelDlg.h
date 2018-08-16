@@ -28,7 +28,6 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 	afx_msg void OnPaint();
-	afx_msg void OnBnClickedBtntestChannel();
 	afx_msg void OnBnClickedBtnjoinChannel();
 	afx_msg void OnBnClickedBtnsetChannel();
 	afx_msg void OnCbnSelchangeCmbRole();
@@ -41,7 +40,7 @@ protected:
 private:
 	CAGEdit			m_ctrChannel;
     CAGEdit         m_ctrPassword;
-    CAGButton		m_btnTest;
+   // CAGButton		m_btnTest;
 	CAGButton		m_btnJoin;
 	CAGButton		m_btnSetup;
 

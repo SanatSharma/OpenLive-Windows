@@ -84,6 +84,7 @@ BEGIN_MESSAGE_MAP(COpenLiveDlg, CDialogEx)
     ON_MESSAGE(WM_MSGID(EID_NETWORK_QUALITY), &COpenLiveDlg::OnNetworkQuality)
 
     ON_WM_CLOSE()
+	ON_STN_CLICKED(IDC_LINKAGORA, &COpenLiveDlg::OnStnClickedLinkagora)
 END_MESSAGE_MAP()
 
 
@@ -180,7 +181,7 @@ void COpenLiveDlg::InitCtrls()
 	m_btnClose.SetBackImage(IDB_BTNCLOSE, RGB(0xFF, 0, 0xFF));
 
 	m_linkAgora.SetFont(&m_ftLink);
-	m_linkAgora.SetURL(_T("http://www.agora.io"));
+	m_linkAgora.SetURL(_T("http://www.eduneev.in"));
 	m_linkAgora.SetWindowText(LANG_STR("IDS_LOGO_AGORAWEB"));
 	CMFCButton::EnableWindowsTheming(FALSE);
 }
@@ -193,7 +194,7 @@ void COpenLiveDlg::InitChildDialog()
 	m_dlgSetup.Create(CSetupDlg::IDD, this);
 	m_dlgVideo.Create(CVideoDlg::IDD, this);
 
-	m_dlgEnterChannel.MoveWindow(110, 70, 500, 450, TRUE);
+	m_dlgEnterChannel.MoveWindow(50, 70, 500, 450, TRUE);
 	m_dlgSetup.MoveWindow(110, 70, 500, 450, TRUE);
 
 	m_dlgEnterChannel.ShowWindow(SW_SHOW);
@@ -272,7 +273,7 @@ void COpenLiveDlg::DrawClient(CDC *lpDC)
 	LPCTSTR lpString = NULL;
 	CFont* defFont = lpDC->SelectObject(&m_ftTitle);
 
-	m_imgNetQuality.Draw(lpDC, m_nNetworkQuality, CPoint(16, 40), ILD_NORMAL);
+//	m_imgNetQuality.Draw(lpDC, m_nNetworkQuality, CPoint(16, 40), ILD_NORMAL);
 
 	GetClientRect(&rcClient);
 	lpDC->SetBkColor(RGB(0x00, 0x9E, 0xEB));
@@ -345,7 +346,7 @@ LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 
 	vc.uid = 0;
 	vc.view = m_dlgVideo.GetLocalVideoWnd();
-	vc.renderMode = RENDER_MODE_TYPE::RENDER_MODE_FIT;
+	vc.renderMode = RENDER_MODE_TYPE::RENDER_MODE_HIDDEN;
 
 	//cancel setVideoProfile bitrate since version 2.1.0
 	int nVideoSolution = m_dlgSetup.GetVideoSolution();
@@ -389,4 +390,10 @@ void COpenLiveDlg::OnClose()
     // TODO:  在此添加消息处理程序代码和/或调用默认值
 
     CDialogEx::OnClose();
+}
+
+
+void COpenLiveDlg::OnStnClickedLinkagora()
+{
+	// TODO: Add your control notification handler code here
 }

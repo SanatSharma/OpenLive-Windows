@@ -78,4 +78,5 @@ private:	// data
 	int m_nNetworkQuality;
 public:
     afx_msg void OnClose();
+	afx_msg void OnStnClickedLinkagora();
 };

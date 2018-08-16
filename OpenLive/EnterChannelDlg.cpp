@@ -28,7 +28,7 @@ void CEnterChannelDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_EDCHNAME_CHANNEL, m_ctrChannel);
-    DDX_Control(pDX, IDC_BTNTEST_CHANNEL, m_btnTest);
+   // DDX_Control(pDX, IDC_BTNTEST_CHANNEL, m_btnTest);
     DDX_Control(pDX, IDC_BTNJOIN_CHANNEL, m_btnJoin);
     DDX_Control(pDX, IDC_BTNSET_CHANNEL, m_btnSetup);
     DDX_Control(pDX, IDC_EDCHPSWD_CHANNEL, m_ctrPassword);
@@ -38,11 +38,9 @@ void CEnterChannelDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CEnterChannelDlg, CDialogEx)
 	ON_WM_NCHITTEST()
 	ON_WM_PAINT()
-	ON_BN_CLICKED(IDC_BTNTEST_CHANNEL, &CEnterChannelDlg::OnBnClickedBtntestChannel)
 	ON_BN_CLICKED(IDC_BTNJOIN_CHANNEL, &CEnterChannelDlg::OnBnClickedBtnjoinChannel)
 	ON_BN_CLICKED(IDC_BTNSET_CHANNEL, &CEnterChannelDlg::OnBnClickedBtnsetChannel)
 	ON_CBN_SELCHANGE(IDC_CMBROLE_CHANNEL, &CEnterChannelDlg::OnCbnSelchangeCmbRole)
-
 END_MESSAGE_MAP()
 
 
@@ -89,17 +87,17 @@ void CEnterChannelDlg::InitCtrls()
 
 	GetClientRect(&ClientRect);
 
-	m_ctrChannel.MoveWindow(ClientRect.Width()/2-150, 33, 300, 22, TRUE);
+	m_ctrChannel.MoveWindow(0, 30, 300, 22, TRUE);
     m_ctrChannel.SetFont(&m_ftDesc);
-	m_ctrChannel.SetCaretPos(CPoint(12, 148));
+	m_ctrChannel.SetCaretPos(CPoint(14, 148));
 	m_ctrChannel.ShowCaret();
 	m_ctrChannel.SetTip(LANG_STR("IDS_CHN_CHANNELNAME"));
     
-    m_ctrPassword.MoveWindow(ClientRect.Width() / 2 - 150, 82, 120, 22, TRUE);
+    m_ctrPassword.MoveWindow(ClientRect.Width() / 2 - 150, 50, 120, 22, TRUE);
 	m_ctrPassword.SetTip(LANG_STR("IDS_CHN_ROOMPASSWORD"));
 
-	m_ctrRole.Create(WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_OWNERDRAWVARIABLE, CRect(ClientRect.Width() / 2 + 1, 168, 180, 32), this, IDC_CMBROLE_CHANNEL);
-	m_ctrRole.MoveWindow(ClientRect.Width() / 2 + 40, 78, 130, 22, TRUE);
+	m_ctrRole.Create(WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_OWNERDRAWVARIABLE, CRect(ClientRect.Width() / 2 + 10, 168, 200, 20), this, IDC_CMBROLE_CHANNEL);
+	m_ctrRole.MoveWindow(100, 75, 130, 22, TRUE);
 	m_ctrRole.SetFont(&m_ftHead);
 	m_ctrRole.SetButtonImage(IDB_CMBBTN, 12, 12, RGB(0xFF, 0x00, 0xFF));
 	m_ctrRole.SetFaceColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF));
@@ -109,22 +107,22 @@ void CEnterChannelDlg::InitCtrls()
 
 	m_ctrRole.SetCurSel(0);
    
-	m_btnJoin.MoveWindow(ClientRect.Width() / 2 - 180, 310, 360, 36, TRUE);
-	m_btnTest.MoveWindow(ClientRect.Width() / 2 - 180, 355, 108, 36, TRUE);
-	m_btnSetup.MoveWindow(ClientRect.Width() / 2 - 60, 355, 240, 36, TRUE);
+	m_btnJoin.MoveWindow(120, 310, 360, 36, TRUE);
+//	m_btnTest.MoveWindow(ClientRect.Width() / 2 - 180, 355, 108, 36, TRUE);
+	m_btnSetup.MoveWindow(ClientRect.Width() / 2 - ClientRect.Width()/4, 355, 240, 36, TRUE);
 
 	m_btnJoin.SetBackColor(RGB(0x00, 0xA0, 0xE9), RGB(0x05, 0x78, 0xAA), RGB(0x05, 0x78, 0xAA), RGB(0xE6, 0xE6, 0xE6));
 	m_btnJoin.SetFont(&m_ftBtn);
 	m_btnJoin.SetTextColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF), RGB(0xCC, 0xCC, 0xCC));
 	m_btnJoin.SetWindowText(LANG_STR("IDS_CHN_BTJOIN"));
 
-	m_btnTest.SetBorderColor(RGB(0xD8, 0xD8, 0xD8), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
+/*	m_btnTest.SetBorderColor(RGB(0xD8, 0xD8, 0xD8), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
 	m_btnTest.SetBackColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF));
 	m_btnTest.SetFont(&m_ftBtn);
 	m_btnTest.SetTextColor(RGB(0x55, 0x58, 0x5A), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
 	m_btnTest.SetWindowText(LANG_STR("IDS_CHN_BTTEST"));
-
-	m_btnSetup.SetBorderColor(RGB(0xD8, 0xD8, 0xD8), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
+*/
+	//m_btnSetup.SetBorderColor(RGB(0xD8, 0xD8, 0xD8), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
 	m_btnSetup.SetBackColor(RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF), RGB(0xFF, 0xFF, 0xFF));
 	m_btnSetup.SetFont(&m_ftBtn);
 	m_btnSetup.SetTextColor(RGB(0x55, 0x58, 0x5A), RGB(0x00, 0xA0, 0xE9), RGB(0x00, 0xA0, 0xE9), RGB(0xCC, 0xCC, 0xCC));
@@ -169,14 +167,6 @@ void CEnterChannelDlg::DrawClient(CDC *lpDC)
 	// Done with the font.  Delete the font object.
 	//	font.DeleteObject();
 }
-
-void CEnterChannelDlg::OnBnClickedBtntestChannel()
-{
-	// TODO:  在此添加控件通知处理程序代码
-	m_dlgDevice.ShowWindow(SW_SHOW);
-	m_dlgDevice.CenterWindow();
-}
-
 
 void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 {
@@ -225,4 +215,3 @@ void CEnterChannelDlg::SetVideoString(LPCTSTR lpVideoString)
 {
 	m_btnSetup.SetWindowText(lpVideoString);
 }
-
