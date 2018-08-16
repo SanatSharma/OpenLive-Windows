@@ -19,7 +19,7 @@ using namespace agora::rtc;
 #define AG_ENGFLAG_NSON			0x00000200	// Noise reduction
 #define AG_ENGFLAG_AECON		0x00000400	// Echo Cancellation
 
-#define APP_ID				_T("")
+#define APP_ID				_T("53ff08bd38f74477b167e89305de15e7")
 
 typedef struct _SEI_INFO
 {

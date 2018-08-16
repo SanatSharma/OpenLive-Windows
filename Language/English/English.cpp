@@ -5,9 +5,9 @@
 #include "English.h"
 
 
-ENGLISH_API LPCTSTR IDS_TITLE = _T("OpenLive");
+ENGLISH_API LPCTSTR IDS_TITLE = _T("2WayLive");
 ENGLISH_API LPCTSTR IDS_LOGO_DESC = _T("Powering Real-Time Communications");
-ENGLISH_API LPCTSTR IDS_LOGO_AGORAWEB = _T("agora.io");
+ENGLISH_API LPCTSTR IDS_LOGO_AGORAWEB = _T("2WayLive");
 
 ENGLISH_API LPCTSTR IDS_PRE_TITLE = _T("Select conference type");
 ENGLISH_API LPCTSTR IDS_PRE_OPTDSC1 = _T("* Optimized calls have best performance but");
