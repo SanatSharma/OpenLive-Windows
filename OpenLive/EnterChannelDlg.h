@@ -30,7 +30,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg void OnBnClickedBtnjoinChannel();
 	afx_msg void OnBnClickedBtnsetChannel();
-	afx_msg void OnCbnSelchangeCmbRole();
+	//afx_msg void OnCbnSelchangeCmbRole();
 	DECLARE_MESSAGE_MAP()
 
 protected:
@@ -39,9 +39,7 @@ protected:
 
 private:
 	CAGEdit			m_ctrChannel;
-    CAGEdit         m_ctrPassword;
-   // CAGButton		m_btnTest;
-	CAGButton		m_btnJoin;
+    CAGButton		m_btnJoin;
 	CAGButton		m_btnSetup;
 
 	CFont			m_ftChannel;
@@ -51,6 +49,4 @@ private:
 
 	CPen            m_penFrame;
 	CDeviceDlg		m_dlgDevice;
-
-	CAGComboBox		m_ctrRole;
 };
