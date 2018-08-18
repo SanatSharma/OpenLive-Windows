@@ -452,15 +452,8 @@ BOOL CAgoraObject::SetChannelProfile(BOOL bBroadcastMode)
 {
 	int nRet = 0;
 
-	if (!bBroadcastMode){
-		m_nChannelProfile = CHANNEL_PROFILE_COMMUNICATION;
-		nRet = m_lpAgoraEngine->setChannelProfile(CHANNEL_PROFILE_COMMUNICATION);
-	}
-	else {
-		m_nChannelProfile = CHANNEL_PROFILE_LIVE_BROADCASTING;
-		nRet = m_lpAgoraEngine->setChannelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING);
-	}
-
+	m_nChannelProfile = CHANNEL_PROFILE_COMMUNICATION;
+	nRet = m_lpAgoraEngine->setChannelProfile(CHANNEL_PROFILE_COMMUNICATION);
 	return nRet == 0 ? TRUE : FALSE;
 }
 

@@ -333,6 +333,7 @@ LRESULT COpenLiveDlg::OnNextPage(WPARAM wParam, LPARAM lParam)
 
 LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 {
+
 	IRtcEngine		*lpRtcEngine = CAgoraObject::GetEngine();
 	CAgoraObject	*lpAgoraObject = CAgoraObject::GetAgoraObject();
 

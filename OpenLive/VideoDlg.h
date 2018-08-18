@@ -58,7 +58,7 @@ protected:
 	afx_msg void OnBnClickedBtnMore();
 
 	afx_msg void OnBnClickedBtnfullscr();
-	afx_msg void OnCbnSelchangeCmbRole();
+	//afx_msg void OnCbnSelchangeCmbRole();
 
 	afx_msg void OnBnClickedScreenshare();
 	afx_msg void OnBnClickedWindowshare();
@@ -119,7 +119,7 @@ private:
 	CAGButton		m_btnMode;
 	CAGButton		m_btnAudio;
 	CAGButton		m_btnEndCall;
-	CComboBox		m_cbxRole;
+	//CComboBox		m_cbxRole;
 	CAGButton		m_btnShow;
 	CAGButton		m_btnTip;
 	CAGButton		m_btnScrCap;
