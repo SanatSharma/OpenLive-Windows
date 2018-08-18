@@ -82,13 +82,8 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 	ON_BN_CLICKED(ID_IDR_DEVICE, &CVideoDlg::OnBnClickedBtnsetup)
 	ON_BN_CLICKED(ID_IDR_SEIPUSH, &CVideoDlg::OnBnClickedBtSEIPush)
 
-	//ON_CBN_SELCHANGE(IDC_CBXROLE_VIDEO, &CVideoDlg::OnCbnSelchangeCmbRole)
-
 	ON_WM_SHOWWINDOW()
 END_MESSAGE_MAP()
-
-
-// CVideoDlg 消息处理程序
 
 
 void CVideoDlg::OnSize(UINT nType, int cx, int cy)
@@ -184,9 +179,6 @@ void CVideoDlg::AdjustButtonsNormal(int cx, int cy)
 
 	if (m_btnMore.GetSafeHwnd() != NULL)
 		m_btnMore.MoveWindow(cx / 2 + 168, cy - 60, 48, 48, TRUE);
-
-//	if (m_cbxRole.GetSafeHwnd() != NULL)
-//		m_cbxRole.MoveWindow(cx / 2 - 370, cy - 50, 120, 42, TRUE);;
 
 	if (m_btnShow.GetSafeHwnd() != NULL)
 		m_btnShow.MoveWindow(cx - 126, cy - 48, 24, 24, TRUE);
@@ -464,16 +456,6 @@ void CVideoDlg::OnBnClickedBtnfullscr()
 
 	Invalidate(TRUE);
 }
-
-/*void CVideoDlg::OnCbnSelchangeCmbRole()
-{
-	int nSel = m_cbxRole.GetCurSel();
-
-	if (nSel == 0)
-		CAgoraObject::GetAgoraObject()->SetClientRole(CLIENT_ROLE_TYPE::CLIENT_ROLE_BROADCASTER);
-	else
-		CAgoraObject::GetAgoraObject()->SetClientRole(CLIENT_ROLE_TYPE::CLIENT_ROLE_AUDIENCE);
-}*/
 
 void CVideoDlg::OnBnClickedScreenshare()
 {
@@ -866,17 +848,6 @@ void CVideoDlg::InitCtrls()
 	m_btnEndCall.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNENDCALL_VIDEO);
 	m_btnScrCap.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNSCRCAP_VIDEO);
 	m_btnMore.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNMORE_VIDEO);
-
-	//m_cbxRole.Create(WS_VISIBLE | WS_CHILD | CBS_AUTOHSCROLL | CBS_DROPDOWNLIST, CRect(0, 0, 1, 1), this, IDC_CBXROLE_VIDEO);
-	//m_cbxRole.SetFont(&m_ftDes);
-
-	//for (int nIndex = 0; nIndex < 2; nIndex++) {
-	//	CStringA str;
-
-	//	str.Format("IDS_CHN_ROLE%d", nIndex);
-	//	m_cbxRole.InsertString(nIndex, LANG_STR(str));
-	//}
-
 	m_btnShow.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNSCR_VIDEO);
 	m_btnTip.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNTIP_VIDEO);
 	
@@ -899,8 +870,6 @@ void CVideoDlg::InitCtrls()
 	m_btnAudio.MoveWindow(rcClient.Width() / 2 + 24, rcClient.Height() - 84, 72, 72, TRUE);
 	m_btnShow.MoveWindow(rcClient.Width()/2 + 144, rcClient.Height() - 84, 72, 72, TRUE);
 	m_btnEndCall.MoveWindow(rcClient.Width() - 120, rcClient.Height() - 84, 72, 72, TRUE);
-
-	//m_cbxRole.MoveWindow(rcClient.Width() - 80, rcClient.Height() - 84, 300, 48, TRUE);
 
 	m_wndVideo[0].MoveWindow(0, 24, rcClient.Width(), rcClient.Height() - 96, TRUE);
 
@@ -1176,16 +1145,4 @@ LRESULT CVideoDlg::OnShowBig(WPARAM wParam, LPARAM lParam)
 void CVideoDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CDialogEx::OnShowWindow(bShow, nStatus);
-
-	// TODO:  在此处添加消息处理程序代码
-	/*
-	if (bShow && GetSafeHwnd() != NULL) {
-		RebindVideoWnd();
-		int nRole = CAgoraObject::GetAgoraObject()->GetClientRole();
-
-		if (nRole == 1)
-			m_cbxRole.SetCurSel(0);
-		else
-			m_cbxRole.SetCurSel(1);
-	}*/
 }
