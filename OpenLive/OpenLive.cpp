@@ -77,7 +77,6 @@ BOOL COpenLiveApp::InitInstance()
 
 	nResponse = Logo.DoModal();
 	COpenLiveDlg	avcDlg;
-
 	m_pMainWnd = &avcDlg;
 	nResponse = avcDlg.DoModal();
 

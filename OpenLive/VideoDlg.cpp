@@ -11,6 +11,8 @@
 
 IMPLEMENT_DYNAMIC(CVideoDlg, CDialogEx)
 
+BOOL CVideoDlg::m_bInitialFullScreenCheck = TRUE;
+
 CVideoDlg::CVideoDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CVideoDlg::IDD, pParent)
 {
@@ -19,6 +21,7 @@ CVideoDlg::CVideoDlg(CWnd* pParent /*=NULL*/)
 	m_bLastStat = FALSE;
 	m_nScreenMode = SCREEN_VIDEO1;
 	m_bFullScreen = FALSE;
+//	m_bInitialFullScreenCheck = TRUE;
 	m_nTimeCounter = 0;
 	m_lpBigShowed = NULL;
 
@@ -48,6 +51,7 @@ BEGIN_MESSAGE_MAP(CVideoDlg, CDialogEx)
 
 	ON_MESSAGE(WM_SHOWMODECHANGED, &CVideoDlg::OnShowModeChanged)
 	ON_MESSAGE(WM_SHOWBIG, &CVideoDlg::OnShowBig)
+	ON_MESSAGE(WM_LEAVEHANDLER, &CVideoDlg::OnLeaveChannelCall)
 
 	ON_MESSAGE(WM_MSGID(EID_JOINCHANNEL_SUCCESS), &CVideoDlg::OnEIDJoinChannelSuccess)
 	ON_MESSAGE(WM_MSGID(EID_REJOINCHANNEL_SUCCESS), &CVideoDlg::OnEIDReJoinChannelSuccess)
@@ -357,6 +361,35 @@ void CVideoDlg::OnBnClickedBtnclose()
 	CDialogEx::OnOK();
 }
 
+LRESULT CVideoDlg::OnLeaveChannelCall(WPARAM wParama, LPARAM lParam)
+{
+	GetParent()->SendMessage(WM_LEAVECHANNEL, 0, 0);
+
+	m_listWndInfo.RemoveAll();
+	m_dlgChat.ShowWindow(SW_HIDE);
+	m_dlgDevice.ShowWindow(SW_HIDE);
+
+	// unmute local video
+	CAgoraObject::GetAgoraObject()->MuteLocalVideo(FALSE);
+	m_btnMode.SetBackImage(IDB_BTNAUDIO_VIDEO);
+
+	// unmute local audio
+	CAgoraObject::GetAgoraObject()->MuteLocalAudio(FALSE);
+	m_btnAudio.SwitchButtonStatus(CAGButton::AGBTN_NORMAL);
+
+	CAgoraObject::GetAgoraObject()->EnableScreenCapture(NULL, 0, NULL, FALSE);
+	m_btnScrCap.SwitchButtonStatus(CAGButton::AGBTN_NORMAL);
+
+	m_dlgChat.ShowWindow(SW_HIDE);
+	m_dlgChat.ClearHistory();
+
+	CAgoraObject::GetAgoraObject()->RemoveAllSEIInfo();
+
+	CDialogEx::OnOK();
+
+	return 0;
+}
+
 void CVideoDlg::OnBnClickedBtnrest()
 {
 	if (IsZoomed()) {
@@ -416,11 +449,13 @@ void CVideoDlg::OnBnClickedBtnfullscr()
 
 		GetClientRect(&m_rcVideoArea);
 		m_rcVideoArea.top += 24;
-		m_rcVideoArea.bottom -= 72;	
+		m_rcVideoArea.bottom -= 72;			
 	}
 	else{
 		m_bFullScreen = TRUE;
 		nShowMode = SW_HIDE;
+		if (m_bInitialFullScreenCheck)
+			m_bInitialFullScreenCheck = FALSE;
 		ShowWindow(SW_MAXIMIZE);
 
 		GetClientRect(&m_rcVideoArea);
@@ -937,6 +972,8 @@ void CVideoDlg::ShowVideo1()
 	m_nScreenMode = SCREEN_VIDEO1;
 
 	ShowButtonsNormal();
+	if (m_bInitialFullScreenCheck)
+		CVideoDlg::OnBnClickedBtnfullscr();
 }
 
 void CVideoDlg::ShowVideo4()

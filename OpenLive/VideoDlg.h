@@ -31,7 +31,7 @@ public:
 	void RebindVideoWnd();
 
 	void ShowControlButton(BOOL bShow = TRUE);
-
+	static BOOL			m_bInitialFullScreenCheck;
 	
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
@@ -69,6 +69,8 @@ protected:
 	// 用于处理引擎的回调消息
 	afx_msg LRESULT OnEIDJoinChannelSuccess(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnEIDReJoinChannelSuccess(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnLeaveChannelCall(WPARAM wParama, LPARAM lParam);
+
 	
 	afx_msg LRESULT OnEIDFirstLocalFrame(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnEIDFirstRemoteFrameDecoded(WPARAM wParam, LPARAM lParam);

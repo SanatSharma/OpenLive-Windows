@@ -8,6 +8,8 @@
 #include "EnterChannelDlg.h"
 #include "SetupDlg.h"
 #include "VideoDlg.h"
+#include <uWS/uWS.h>
+#include <nlohmann/json.hpp>
 
 // COpenLiveDlg dialog
 class COpenLiveDlg : public CDialogEx
@@ -72,11 +74,17 @@ private:
 	CVideoDlg		m_dlgVideo;
 	CAgoraObject	*m_lpAgoraObject;
 	IRtcEngine		*m_lpRtcEngine;
-
+	uWS::Hub h;
+	
 private:	// data
     int m_nVideoProfile;
 	int m_nNetworkQuality;
 public:
     afx_msg void OnClose();
 	afx_msg void OnStnClickedLinkagora();
+
+	//place in different file maybe
+	void StartWebSockets();
+	bool IsJson(std::string str);
+	void ErrorCheck(void* user);
 };

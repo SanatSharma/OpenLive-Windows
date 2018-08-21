@@ -4,24 +4,20 @@
 #include "stdafx.h"
 #include "OpenLive.h"
 #include "EnterChannelDlg.h"
-
-
 #include "afxdialogex.h"
 
 
-// CEnterChannelDlg 对话框
+// CEnterChannelDlg
 
 IMPLEMENT_DYNAMIC(CEnterChannelDlg, CDialogEx)
 
 CEnterChannelDlg::CEnterChannelDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CEnterChannelDlg::IDD, pParent)
-{
-    
+{   
 }
 
 CEnterChannelDlg::~CEnterChannelDlg()
 {
-
 }
 
 void CEnterChannelDlg::DoDataExchange(CDataExchange* pDX)
@@ -41,7 +37,7 @@ BEGIN_MESSAGE_MAP(CEnterChannelDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CEnterChannelDlg 消息处理程序
+// CEnterChannelDlg
 BOOL CEnterChannelDlg::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN){
@@ -53,7 +49,6 @@ BOOL CEnterChannelDlg::PreTranslateMessage(MSG* pMsg)
 			return FALSE;
 		}
 	}
-
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
 
@@ -61,11 +56,9 @@ BOOL CEnterChannelDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  在此添加额外的初始化
-
 	m_ftHead.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
-	m_ftDesc.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
-	m_ftBtn.CreateFont(16, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
+	m_ftDesc.CreateFont(25, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
+	m_ftBtn.CreateFont(19, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
 	m_penFrame.CreatePen(PS_SOLID, 1, RGB(0xD8, 0xD8, 0xD8));
 
 	m_dlgDevice.Create(CDeviceDlg::IDD, this);
@@ -75,7 +68,6 @@ BOOL CEnterChannelDlg::OnInitDialog()
 	InitCtrls();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// 异常:  OCX 属性页应返回 FALSE
 }
 
 void CEnterChannelDlg::InitCtrls()
@@ -84,7 +76,7 @@ void CEnterChannelDlg::InitCtrls()
 
 	GetClientRect(&ClientRect);
 
-	m_ctrChannel.MoveWindow(0, 30, 300, 22, TRUE);
+	m_ctrChannel.MoveWindow(10, 180, 300, 22, TRUE);
     m_ctrChannel.SetFont(&m_ftDesc);
 	m_ctrChannel.SetCaretPos(CPoint(14, 148));
 	m_ctrChannel.ShowCaret();
@@ -125,16 +117,15 @@ void CEnterChannelDlg::DrawClient(CDC *lpDC)
 	lpDC->SetBkColor(RGB(0xFF, 0xFF, 0xFF));
 	lpDC->SetTextColor(RGB(0x44, 0x45, 0x46));
 
-	lpDC->SelectObject(&m_penFrame);
-	rcText.SetRect(rcClient.Width() / 2 - 180, 25, rcClient.Width() / 2 + 170, 57);
-	lpDC->RoundRect(&rcText, CPoint(32, 32));
+//	lpDC->SelectObject(&m_penFrame);
+	rcText.SetRect(rcClient.Width() / 2 - 180, rcClient.Height() / 2 - 60, rcClient.Width() / 2 + 270, rcClient.Height() / 2 - 10);
+	lpDC->RoundRect(&rcText, CPoint(42, 42));
 
 	lpDC->SelectObject(defFont);
 }
 
 void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 {
-	// TODO:  在此添加控件通知处理程序代码
 	CString     strKey;
     CString     strChannelName;
     CString     strInfo;
@@ -150,8 +141,6 @@ void CEnterChannelDlg::OnBnClickedBtnjoinChannel()
 
 void CEnterChannelDlg::OnBnClickedBtnsetChannel()
 {
-	// TODO:  在此添加控件通知处理程序代码
-
 	GetParent()->SendMessage(WM_GONEXT, 0, 0);
 }
 
